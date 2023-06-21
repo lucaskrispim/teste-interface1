@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layout}">
+
+    <body>
+        <section class="layout-content" layout:fragment="corpo">
+
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span sec:authentication="principal.nome"> </span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div th:replace="files/alert"></div>
+                <div id="list-home" class="row">
+                    <div class="col-12">
+                        
+                        <form method="POST" id="form1" th:action="@{/user/editar}"
+                              th:object="${usuario}">
+                            <input type="hidden" id="id" th:field="*{id}"/>
+                            <input type="hidden" id="cpd" th:field="*{cpf}"/>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>*Nome</label>
+                                            <input type="text" class="form-control" id="cpNome" 
+                                                   required="required" placeholder="nome" value="" 
+                                                   th:field="*{name}"  autofocus="true"
+                                                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'" />
+                                            <div class="invalid-feedback">
+                                                <span th:errors="*{name}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">*Email </label>
+                                            <input type="email" class="form-control" id="cpEmail" required="required" placeholder="Email"
+                                                   th:field="*{email}"
+                                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" />
+                                            <div class="invalid-feedback">
+                                                <span th:errors="*{email}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>*Senha</label>
+                                            <input type="password" class="form-control" id="cpCpf" 
+                                                   required="required"
+                                                   th:field="*{senha}"
+                                                   th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'" />
+                                            <div class="invalid-feedback">
+                                                <span th:errors="*{senha}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="update ml-auto mr-auto">
+                                        <button type="submit" class="btn btn-primary btn-round">Confirmar Alterações</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+
+                        
+                    </div>
+                </div>
+<!--                <div class="row">
+                    <div class="col-12">
+                        <div style="margin-top:15px">
+                            <p>Fazer o bem faz bem. Divulgue essa idéia!!</p>
+                        </div>
+
+                    </div>
+                </div>-->
+            </div>
+
+        </section> 
+
+    </body>
+</html>

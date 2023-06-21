@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layout}">
+
+    <body>
+        <section class="layout-content" layout:fragment="corpo">
+
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span > NOVA TAREFA </span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div th:replace="files/alert"></div>
+                <div id="list-home" class="row">
+                    <div class="col-12">
+                        
+                        <form method="POST" id="form1" th:action="@{/task}"
+                              th:object="${tarefa}"> 
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 pr-1">
+                                        <div class="form-group">
+                                            <label>*Tarefa</label>
+                                            <input type="text" class="form-control" id="cpNome"  autofocus="true"
+                                                   required="required" placeholder="descrição da tarefa" value="" 
+                                                   th:field="*{taskDescription}" 
+                                                   th:classappend="${#fields.hasErrors('taskDescription')} ? 'is-invalid'" />
+                                            <div class="invalid-feedback">
+                                                <span th:errors="*{taskDescription}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label for="cpData">*Data Planejada para Finalizar </label>
+                                            <input type="date" class="form-control" id="cpData" required="required" placeholder="Data Planejada"
+                                                   th:field="*{plannedDate}"
+                                                   th:classappend="${#fields.hasErrors('plannedDate')} ? 'is-invalid'" />
+                                            <div class="invalid-feedback">
+                                                <span th:errors="*{plannedDate}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="update ml-auto mr-auto">
+                                        <button type="submit" class="btn btn-primary btn-round">Confirmar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+
+                        
+                    </div>
+                </div>
+<!--                <div class="row">
+                    <div class="col-12">
+                        <div style="margin-top:15px">
+                            <p>Fazer o bem faz bem. Divulgue essa idéia!!</p>
+                        </div>
+
+                    </div>
+                </div>-->
+            </div>
+
+        </section> 
+
+    </body>
+</html>

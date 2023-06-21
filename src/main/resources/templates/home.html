@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layout}">
+
+    <body>
+        <section class="layout-content" layout:fragment="corpo">
+
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span sec:authentication="principal.nome"> </span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div th:replace="files/alert"></div>
+                <div id="list-home" class="row">
+                    <div class="col-12">
+                        <h2>  <label th:text="'Olá, '+${nome}+'! '"></label>  </h2> 
+                        <h5> Que bom ter você no nosso time!!</h5>
+
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div style="margin-top:15px">
+                            <p>Fazer o bem faz bem. Divulgue essa idéia!!</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section> 
+
+    </body>
+</html>
